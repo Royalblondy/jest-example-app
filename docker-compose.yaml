@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  build_app:
+    tty: true
+    build:
+      context: .
+      dockerfile: build.Dockerfile
+      args:
+        BUILD_NO_CACHE: --no-cache
+    container_name: build-container
+    image: jestapp:build
+    ports:
+      - "3000"
+  test_app:
+    tty: true
+    build:
+      context: .
+      dockerfile: test.Dockerfile
+      args:
+        BUILD_NO_CACHE: --no-cache
+    container_name: test-container
+    image: jestapp:test
+    depends_on:
+      - build_app
