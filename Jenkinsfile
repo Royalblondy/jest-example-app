@@ -25,8 +25,8 @@ pipeline {
                 echo "Building and testing..."
                 sh '''
                 cd ./Dockerfiles
-                docker compose build --no-cache
-                docker compose up --exit-code-from test_app
+                docker-compose build --no-cache
+                docker-compose up --exit-code-from test_app
                 '''
             }
         }
