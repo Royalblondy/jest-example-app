@@ -60,14 +60,14 @@ pipeline {
         stage('Publish') {
             steps {
                 echo "Publishing version number v1.${env.BUILD_NUMBER}"
-                sh '''
-                echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
-                docker tag $IMAGE_NAME Royalblondy/$IMAGE_NAME
-                docker tag $IMAGE_NAME Royalblondy/jestapp:latest
-                docker push Royalblondy/$IMAGE_NAME
-                docker push Royalblondy/jestapp:latest
-                docker rmi Royalblondy/jestapp:latest Royalblondy/$IMAGE_NAME
-                '''
+                
+                sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
+                sh "docker tag $IMAGE_NAME royalblondy/$IMAGE_NAME"
+                sh "docker tag $IMAGE_NAME royalblondy/jestapp:latest"
+                sh "docker push royalblondy/$IMAGE_NAME"
+                sh "docker push royalblondy/jestapp:latest"
+                sh "docker rmi royalblondy/jestapp:latest royalblondy/$IMAGE_NAME"
+                
             }
         }
     }
