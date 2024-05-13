@@ -61,11 +61,11 @@ pipeline {
                 echo "Publishing version number v1.${env.BUILD_NUMBER}"
                 sh '''
                 echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
-                docker tag $IMAGE_NAME qba002/$IMAGE_NAME
-                docker tag $IMAGE_NAME qba002/jestapp:latest
-                docker push qba002/$IMAGE_NAME
-                docker push qba002/jestapp:latest
-                docker rmi qba002/jestapp:latest qba002/$IMAGE_NAME
+                docker tag $IMAGE_NAME Royalblondy/$IMAGE_NAME
+                docker tag $IMAGE_NAME Royalblondy/jestapp:latest
+                docker push Royalblondy/$IMAGE_NAME
+                docker push Royalblondy/jestapp:latest
+                docker rmi Royalblondy/jestapp:latest Royalblondy/$IMAGE_NAME
                 '''
             }
         }
