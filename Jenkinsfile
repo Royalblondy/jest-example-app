@@ -35,7 +35,7 @@ pipeline {
                 echo "Deploying ..."
                 sh '''
                 cd ./Dockerfiles
-                docker build --no-cache -t $IMAGE_NAME -f Dockerfile.deploy .
+                docker build --no-cache -t $IMAGE_NAME -f deploy.Dockerfile .
                 docker run -d -p 41247:3000 --name deploy-container $IMAGE_NAME
                 '''
             }
