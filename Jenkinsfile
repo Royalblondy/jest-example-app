@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment{
+        DOCKERHUB_CREDENTIALS = credentials('DockerHub')
         IMAGE_NAME = "jestapp:v1.${env.BUILD_NUMBER}"
     }
 
